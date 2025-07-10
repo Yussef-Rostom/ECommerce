@@ -1,0 +1,11 @@
+<div class="container mt-4">
+
+  <div class="row g-4 justify-content-center">
+
+    @for(product of products; track product.id){
+      <app-product class="card shadow-sm m-3 position-relative" style="width: 18rem; height: 20;" [product]="product"></app-product>
+    }
+
+  </div>
+
+</div>
