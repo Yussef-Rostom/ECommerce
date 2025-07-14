@@ -1,0 +1,68 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card p-4" style="width: 100%; max-width: 400px;">
+    <div class="card-body">
+      <h2 class="card-title text-center mb-4">Login</h2>
+
+      <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            name = "email"
+            [(ngModel)]="loginValues.email"
+            #email = "ngModel"
+            required
+            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
+          >
+          @if (email.invalid && (email.touched || loginForm.submitted)) {
+            <div class="form-text text-danger">
+              @if(email.errors){
+                @if (email.errors['required']) {
+                  <span>This field is required</span>
+                }
+                @else if (email.errors['pattern']){
+                  <span>Enter valid mail</span>
+                }
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="text"
+            class="form-control"
+            id="password"
+            name = "password"
+            [(ngModel)]="loginValues.password"
+            #password = "ngModel"
+            required
+            minlength="8"
+          >
+          @if (password.invalid && (password.touched || loginForm.submitted)) {
+            <div class="form-text text-danger">
+              @if(password.errors){
+                @if (password.errors['required']) {
+                  <span>This field is required</span>
+                }
+                @else if (password.errors['minlength']) {
+                  <span>password must be at least 8 characters</span>
+                }
+              }
+            </div>
+          }
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 mb-3">Login</button>
+
+        <div class="text-center">
+          Don't have an account? <a routerLink='/register' routerLinkActive="router-link-active"  class="text-decoration-none">Register</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

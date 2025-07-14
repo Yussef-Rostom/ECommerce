@@ -1,7 +1,7 @@
 <div class="container">
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <span class="navbar-brand">E-Commerce</span>
+      <span type="button" class="navbar-brand" class="btn" routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">E-Commerce</span>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -9,9 +9,9 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         </ul>
         <form class="d-flex" role="search">
-          <a type="button" class="btn" href="#">Register</a>
-          <a type="button" class="btn" href="#">Login</a>
-          <a type="button" class="btn bi bi-cart3" href="#"></a>
+          <a type="button" class="btn" routerLink="register" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">Register</a>
+          <a type="button" class="btn" routerLink="login" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">Login</a>
+          <a type="button" class="btn bi bi-cart3" routerLink="cart" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}"></a>
           </form>
       </div>
     </div>

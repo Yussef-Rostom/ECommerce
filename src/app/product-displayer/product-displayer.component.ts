@@ -11,7 +11,4 @@ import { ProductComponent } from './product/product.component';
 })
 export class ProductDisplayerComponent {
   products: Product[] = products;
-  constructor() {
-    console.log(this.products)
-  }
 }

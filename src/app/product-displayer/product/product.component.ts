@@ -2,11 +2,12 @@ import { Component, Input } from '@angular/core';
 import { Product } from '../../interfaces/product';
 import { CommonModule } from '@angular/common';
 import { StarRatingPipe } from '../../pipes/starRating/star-rating.pipe';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-product',
-  imports: [CommonModule, StarRatingPipe],
+  imports: [CommonModule, StarRatingPipe, RouterLink],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
@@ -22,6 +23,5 @@ export class ProductComponent {
         half: (this.rating % 1 > 0) && (Math.ceil(this.rating) === starValue)
       };
     });
-    console.log(this.stars);
   }
 }
