@@ -1,6 +1,8 @@
+import { CartService } from './../services/cart.service';
+import { RequestProductsService } from './../services/request-products.service';
 import { Component } from '@angular/core';
-import { products } from '../../../public/products.json'
 import { Product } from '../interfaces/product';
+import { products } from '../../../public/products.json';
 import { ProductComponent } from './product/product.component';
 
 @Component({
@@ -10,10 +12,14 @@ import { ProductComponent } from './product/product.component';
   styleUrl: './product-displayer.component.css'
 })
 export class ProductDisplayerComponent {
-  products: Product[] = products;
-  onAddToCart(product: any) {
-    // Your add to cart logic
-    console.log('Product added to cart:', product);
+  products: Product[] = [];
+
+  constructor(private requestProductsService: RequestProductsService, private cartService: CartService) { }
+  ngOnInit(){
+    this.requestProductsService.getProducts().subscribe(res => { this.products = res.products });
+  }
+  onAddToCart(product: Product) {
+    this.cartService.addToCart(product);
   }
 
 }

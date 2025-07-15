@@ -1,9 +1,10 @@
+import { RequestProductsService } from './../services/request-products.service';
 import { Component} from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { products } from '../../../public/products.json'
 import { Product } from '../interfaces/product';
 import { StarRatingPipe } from '../pipes/starRating/star-rating.pipe';
 import { CommonModule, CurrencyPipe } from '@angular/common';
+import { CartService } from '../services/cart.service';
 
 
 @Component({
@@ -15,17 +16,15 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
 export class ProductComponent{
   product: Product = {} as Product;
 
-  constructor(private route: ActivatedRoute) {
-  }
+  constructor(private route: ActivatedRoute, private requestProductsService: RequestProductsService, private cartService: CartService) { }
 
   ngOnInit(){
     const id = +this.route.snapshot.params['id'];
-    this.product = products.find(product=> product.id === id) || {} as Product;
+    this.requestProductsService.getProductById(id).subscribe(res => {this.product = res})
   }
 
 
-  addToCart(product: any): void {
-    // Implement your add to cart logic
-    console.log('Added to cart:', product);
+  addToCart(product: Product): void {
+    this.cartService.addToCart(product);
   }
 }
