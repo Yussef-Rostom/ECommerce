@@ -1,0 +1,25 @@
+.card {
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
+}
+
+.card-img-top {
+  transition: transform 0.3s ease;
+
+  .card:hover & {
+    transform: scale(1.03);
+  }
+}
+
+.btn-primary {
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+}

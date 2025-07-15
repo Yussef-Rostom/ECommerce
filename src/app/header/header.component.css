@@ -1,3 +1,28 @@
-.active-link{
-  color: rgba(0, 136, 255, 0.5);
+/* Active state indicators */
+.navbar-brand.active {
+  color: var(--bs-primary) !important;
+  position: relative;
+}
+
+.navbar-brand.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+  background-color: var(--bs-primary);
+  border-radius: 2px;
+}
+
+a.active:not(.btn) {
+  background-color: rgba(var(--bs-primary-rgb), 0.1);
+  font-weight: 500;
+  border-radius: 12px;
+
+}
+
+.btn-primary.active {
+  background-color: var(--bs-primary) !important;
+  box-shadow: inset 0 0 0 2px white;
 }

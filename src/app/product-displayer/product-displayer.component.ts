@@ -11,4 +11,9 @@ import { ProductComponent } from './product/product.component';
 })
 export class ProductDisplayerComponent {
   products: Product[] = products;
+  onAddToCart(product: any) {
+    // Your add to cart logic
+    console.log('Product added to cart:', product);
+  }
+
 }
