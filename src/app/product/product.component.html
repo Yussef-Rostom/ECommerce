@@ -10,30 +10,32 @@
         </button>
 
         <div class="position-relative">
-          <img [src]="product.thumbnail" class="card-img-top img-fluid" style="max-height: 350px;">
-          <span class="position-absolute top-0 end-0 badge rounded-pill fs-6 m-3 {{product.stock > 0 ? 'bg-success' : 'bg-danger'}}">
-            {{ product.stock > 0 ? "In Stock" : "Out of Stock" }}
+          <img [src]="`http://localhost:3000/${product.imageUrl}`" class="card-img-top img-fluid" style="max-height: 350px;">
+          <span class="position-absolute top-0 end-0 badge rounded-pill fs-6 m-3">
+            <!-- {{ product.stock > 0 ? "In Stock" : "Out of Stock" }} -->
           </span>
         </div>
 
         <div class="card-body p-4 pt-5">
 
           <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2 class="card-title h4">{{ product.title }}</h2>
+            <h2 class="card-title h4">{{ product.name }}</h2>
             <h3 class="text-primary h4">{{ product.price | currency }}</h3>
           </div>
+          <div><strong>Category:</strong> {{ product.category || 'N/A' }}</div>
 
-          <div class="mb-3">
+
+          <!-- <div class="mb-3">
             <span class="text-warning fs-4" [innerHTML]="product.rating | starRating"></span>
             <span class="ms-2 text-muted">({{ product.rating }})</span>
-          </div>
+          </div> -->
 
           <div class="mb-3">
             <h4 class="h6">Description</h4>
             <p class="card-text">{{ product.description }}</p>
           </div>
 
-          <div class="row mb-4 text-center">
+          <!-- <div class="row mb-4 text-center">
             <div class="col-md-6">
               <p><strong>Brand:</strong> {{ product.brand || 'N/A' }}</p>
               <p><strong>Category:</strong> {{ product.category || 'N/A' }}</p>
@@ -42,14 +44,13 @@
               <p><strong>Stock:</strong> {{ product.stock }} units</p>
               <p><strong>Discount:</strong> {{ product.discountPercentage || 0 }}%</p>
             </div>
-          </div>
+          </div> -->
 
           <div class="text-center mt-4">
 
             <button class="btn btn-primary px-4 py-2"
-                    [disabled]="product.stock <= 0"
-                    (click)="addToCart(product)">
-              <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                    (click)="callOwner(product)">
+              <i class="bi bi-telephone mx-2"></i><span mx-3>Call Owner</span>
             </button>
 
           </div>

@@ -1,0 +1,162 @@
+<div class="container">
+
+  <div class="alert-container justify-content-center">
+    @if(errorMessage){
+      <div class="alert alert-danger alert-dismissible fade show fixed-alert-center" role="alert">
+        {{errorMessage}}
+      </div>
+    }
+    @if(successMessage){
+      <div class="alert alert-success alert-dismissible fade show fixed-alert-center" role="alert">
+        {{successMessage}}
+      </div>
+    }
+  </div>
+
+
+
+  <div class="d-flex justify-content-center align-items-center min-vh-75 bg-light my-5">
+
+
+    <div class="card border-0 shadow-lg p-4" style="width: 100%; max-width: 450px;">
+      <div class="card-body p-4">
+
+        <div class="text-center mb-4">
+          <i class="bi bi-box-seam-fill text-primary fs-1 mb-3"></i>
+          <h2 class="card-title fw-bold">Add Your Product</h2>
+          <p class="text-muted">Join our community today</p>
+        </div>
+
+        <form [formGroup]="productForm" (ngSubmit)="addProduct()" class="needs-validation" novalidate>
+
+          <div class="mb-4">
+            <label for="name" class="form-label">Product Name</label>
+            <div class="input-group mb-1">
+              <span class="input-group-text"><i class="bi bi-person"></i></span>
+                <input
+                type="name"
+                class="form-control"
+                id="name"
+                formControlName="name"
+                placeholder="Enter your product name"
+              >
+            </div>
+            <div class="validation form-text text-danger mx-2">
+              @if (formControls['name'].invalid && (formControls['name'].touched)) {
+                @if(formControls['name'].errors && formControls['name'].errors['required']){
+                  <span>This field is required</span>
+                }
+              }
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label for="description" class="form-label">description</label>
+            <div class="input-group mb-1">
+              <span class="input-group-text"><i class="bi bi-card-text"></i></span>
+              <textarea
+                type="description"
+                class="form-control"
+                id="description"
+                formControlName="description"
+                placeholder="Enter your product description"
+              ></textarea>
+            </div>
+            <div class="validation form-text text-danger mx-2">
+              @if (formControls['description'].invalid && formControls['description'].touched) {
+                  @if(formControls['description'].errors){
+                    @if(formControls['description'].errors['required']){
+                      <span>description is required</span>
+                    }
+                  }
+              }
+            </div>
+          </div>
+
+          <div class ="mb-4">
+            <label for="price" class="form-label">Price</label>
+            <div class="input-group mb-1">
+              <span class="input-group-text bi bi-currency-dollar"></span>
+                <input
+                type="number"
+                class="form-control"
+                id="price"
+                formControlName="price"
+                placeholder="Enter your phone number"
+              >
+            </div>
+            <div class="validation form-text text-danger mx-2">
+              @if (formControls['price'].invalid && (formControls['price'].touched)) {
+                @if(formControls['price'].errors){
+                  @if(formControls['price'].errors['required']){
+                    <span>This field is required</span>
+                  }
+                  @else if(formControls['price'].errors['min']){
+                    <span>Price must be more than 0</span>
+                  }
+                }
+              }
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label for="categorySelect" class="form-label">Category</label>
+            <select
+              class="form-select"
+              id="categorySelect"
+              formControlName="category"
+            >
+              <option value="" disabled selected>Select a category</option>
+              @for (category of categories; track category.value) {
+                <option [value]="category.value">{{category.label}}</option>
+              }
+            </select>
+            <div class="validation form-text text-danger mx-2">
+              @if (formControls['category'].invalid && (formControls['category'].touched)) {
+                @if(formControls['category'].errors && formControls['category'].errors['required']){
+                  <span>Please select a category</span>
+                }
+              }
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label">Product Image</label>
+
+            <div class="input-group mb-1">
+              <input
+                type="file"
+                class="form-control"
+                (change)="onFileChange($event)"
+                accept="image/*"
+                required
+              >
+            </div>
+            <div class="validation form-text text-danger mx-2">
+              @if (formControls['photo'].invalid && (formControls['photo'].touched || formControls['photo'].dirty)) {
+                @if(formControls['photo'].errors) {
+                  @if(formControls['photo'].errors['required']){
+                    <span>Product image is required</span>
+                  }
+                  @else if(formControls['photo'].errors['invalidType']){
+                    <span>Only JPG, PNG or GIF images are allowed</span>
+                  }
+                  @else if(formControls['photo'].errors['maxSize']){
+                    <span>Image must be smaller than 2MB</span>
+                  }
+                }
+              }
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-primary w-100 py-2 mb-3 fw-bold shadow-sm"
+            [disabled]="productForm.invalid"> Add
+          </button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

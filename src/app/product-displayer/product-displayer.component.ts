@@ -1,9 +1,9 @@
-import { CartService } from './../services/cart.service';
-import { RequestProductsService } from './../services/request-products.service';
+import { RequestProductsService as productsService } from './../services/request-products.service';
 import { Component } from '@angular/core';
 import { Product } from '../interfaces/product';
-import { products } from '../../../public/products.json';
 import { ProductComponent } from './product/product.component';
+import { Router } from '@angular/router';
+import { RequestUserService } from '../services/request-user.service';
 
 @Component({
   selector: 'app-product-displayer',
@@ -14,12 +14,21 @@ import { ProductComponent } from './product/product.component';
 export class ProductDisplayerComponent {
   products: Product[] = [];
 
-  constructor(private requestProductsService: RequestProductsService, private cartService: CartService) { }
+  constructor(private requestProductsService: productsService, private userService: RequestUserService, private router: Router) { }
   ngOnInit(){
-    this.requestProductsService.getProducts().subscribe(res => { this.products = res.products });
-  }
-  onAddToCart(product: Product) {
-    this.cartService.addToCart(product);
+    this.requestProductsService.getProducts().subscribe(res => {
+      this.products = res.data;
+    });
   }
 
+  callOwner(product: Product) {
+    this.userService.contactWith(product.createdBy).subscribe(res => {
+      if (res.status && res.status === 'success') {
+        window.open(`https://wa.me/${res.data}`, '_blank');
+      }
+      else {
+        this.router.navigate(['/404'])
+      }
+     });
+  }
 }

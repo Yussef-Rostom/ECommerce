@@ -2,9 +2,9 @@ import { Routes } from '@angular/router';
 import { ProductDisplayerComponent } from './product-displayer/product-displayer.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { CartComponent } from './cart/cart.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ProductComponent } from './product/product.component';
+import { AddProductComponent } from './add-product/add-product.component';
 
 export const routes: Routes = [
   {
@@ -23,14 +23,14 @@ export const routes: Routes = [
     title: "Register page"
   },
   {
-    path: 'cart',
-    component: CartComponent,
-    title: "Cart page"
-  },
-  {
     path: 'product/:id',
     component: ProductComponent,
     title: "Product Page"
+  },
+  {
+    path: 'product',
+    component: AddProductComponent,
+    title: " Add Product Page"
   },
   {
     path: '**',

@@ -1,25 +1,24 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../interfaces/product';
 import { CommonModule } from '@angular/common';
-import { StarRatingPipe } from '../../pipes/starRating/star-rating.pipe';
 import { Router } from '@angular/router';
 
 
 @Component({
   selector: 'app-product',
-  imports: [CommonModule, StarRatingPipe],
+  imports: [CommonModule],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
 export class ProductComponent {
   @Input() product: Product = {} as Product;
-  @Output() addToCart = new EventEmitter<any>();
+  @Output() callOwner = new EventEmitter<any>();
 
   constructor(private router: Router) {}
 
   handleCardClick(event: Event) {
     if (!this.isClickOnButton(event)) {
-      this.router.navigate(['product', this.product.id]);
+      this.router.navigate(['product', this.product._id]);
     }
   }
 

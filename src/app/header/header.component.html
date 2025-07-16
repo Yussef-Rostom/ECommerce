@@ -14,17 +14,26 @@
 
     <div class="collapse navbar-collapse" id="navbarContent">
       <div class="d-flex ms-auto gap-2 align-items-center">
-        <a class="text-decoration-none text-primary px-2 py-1 rounded"
-           routerLink="register"
-           routerLinkActive="active">Register</a>
-        <a class="text-decoration-none text-primary px-2 py-1 rounded"
-           routerLink="login"
-           routerLinkActive="active">Login</a>
+
+        @if(userName){
+          <a class="text-decoration-none text-dark px-2 py-1 rounded"
+           routerLink="users/me"
+           routerLinkActive="active">{{userName}}</a>
+          <button class="text-decoration-none text-primary px-2 py-1 rounded btn" (click)="logout()"> Logout </button>
+        }
+        @else {
+          <a class="text-decoration-none text-primary px-2 py-1 rounded"
+            routerLink="register"
+            routerLinkActive="active">Register</a>
+          <a class="text-decoration-none text-primary px-2 py-1 rounded"
+            routerLink="login"
+            routerLinkActive="active">Login</a>
+        }
+
         <a class="btn btn-primary btn-sm position-relative ms-2"
-           routerLink="cart"
+           routerLink="product"
            routerLinkActive="active">
-          <i class="bi bi-cart3"></i>
-          <span class="position-absolute top-0 start-100 translate-middle badge bg-danger rounded-circle">{{cartItemsCount}}</span>
+          <i class="bi bi-plus-square text-white"></i>
         </a>
       </div>
     </div>
