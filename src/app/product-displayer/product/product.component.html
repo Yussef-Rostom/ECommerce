@@ -3,7 +3,7 @@
      (click)="handleCardClick($event)">
 
   <div class="position-relative">
-    <img [src]="`http://localhost:3000/${product.imageUrl}`"
+    <img [src]="product.imageUrl"
          class="card-img-top"
          style="height: 250px; object-fit: cover;">
     <!-- <span class="position-absolute top-0 end-0 badge rounded-pill me-2 mt-2 bg-{{ product.stock > 0 ? 'success' : 'danger' }}">
