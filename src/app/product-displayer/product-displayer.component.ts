@@ -24,7 +24,7 @@ export class ProductDisplayerComponent {
   callOwner(product: Product) {
     this.userService.contactWith(product.createdBy).subscribe(res => {
       if (res.status && res.status === 'success') {
-        window.open(`https://wa.me/${res.data}`, '_blank');
+        window.open(`https://wa.me/+2${res.data}`, '_blank');
       }
       else {
         this.router.navigate(['/404'])
