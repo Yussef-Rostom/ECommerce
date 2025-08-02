@@ -71,7 +71,6 @@ export class AddProductComponent {
     if (this.productForm.valid) {
       const formData = new FormData();
 
-      // Append form values
       formData.append('name', this.productForm.value.name);
       formData.append('description', this.productForm.value.description);
       formData.append('price', this.productForm.value.price);
@@ -122,14 +121,12 @@ export class AddProductComponent {
   onFileChange(event: any) {
     const file = event.target.files[0];
 
-    // Validate file type
     const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
     if (!allowedTypes.includes(file.type)) {
       this.productForm.get('photo')?.setErrors({ invalidType: true });
       return;
     }
 
-    // Validate file size (2MB max)
     if (file.size > 2 * 1024 * 1024) {
       this.productForm.get('photo')?.setErrors({ maxSize: true });
       return;

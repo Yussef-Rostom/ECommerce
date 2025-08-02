@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class RequestUserService {
 
-  endPointUrl:string = 'http://localhost:3000/api/users'
+  endPointUrl:string = 'https://used-market-ten.vercel.app/api/users'
 
   constructor(private http: HttpClient, private router: Router) { }
 

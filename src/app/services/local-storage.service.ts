@@ -26,7 +26,7 @@ export class LocalStorageService {
             console.error('Error parsing storage value:', e);
             this.storageSub.next({
               key: event.key || '',
-              value: event.newValue // Return raw string if not JSON
+              value: event.newValue
             });
           }
         });
@@ -34,12 +34,11 @@ export class LocalStorageService {
     });
   }
 
-  // Helper method to safely parse JSON
   private safeJsonParse(value: string): any {
     try {
       return JSON.parse(value);
     } catch (e) {
-      return value; // Return original string if not JSON
+      return value;
     }
   }
 
@@ -60,7 +59,7 @@ export class LocalStorageService {
     try {
       return JSON.parse(item);
     } catch (e) {
-      return item; // Return raw string if not JSON
+      return item;
     }
   }
 

@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class RequestProductsService {
 
-  endPointUrl:string = 'http://localhost:3000/api/products'
+  endPointUrl:string = 'https://used-market-ten.vercel.app/api/products'
 
   constructor(private http: HttpClient, private router: Router) { }
 
