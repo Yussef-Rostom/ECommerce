@@ -1,7 +1,7 @@
 <div class="container py-5">
 
   @if(message){
-    <div class="alert alert-danger alert-dismissible fade show fixed-top mt-5 mx-auto rounded-lg shadow-lg text-center" style="width: 25%; max-width: 1200px;" role="alert">
+    <div class="alert alert-danger alert-dismissible fade show fixed-top mt-5 mx-auto rounded-lg shadow-lg text-center" style="width: 25%; max-width: 1200px; min-width: 250px;" role="alert">
       {{message}}
       <button type="button" class="btn-close" (click)="cancelDeletion()" aria-label="Close"></button>
     </div>
