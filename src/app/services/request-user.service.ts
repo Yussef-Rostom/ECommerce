@@ -34,7 +34,7 @@ export class RequestUserService {
 
   logout(token: string){
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    this.http.post(`${this.endPointUrl}/logout`, {headers})
+    this.http.post(`${this.endPointUrl}/logout`, {headers});
   }
 
   contactWith(id: string): Observable<any>{
@@ -46,5 +46,22 @@ export class RequestUserService {
         return throwError(error);
       })
     );
+  }
+
+  getAllUsers(token: string): Observable<any>{
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(`${this.endPointUrl}`, {headers});
+  }
+
+  updateUserRole(user: User, token: string, newRole: 'ADMIN' | 'USER'): Observable<any>{
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${token}`);
+    return this.http.put(`${this.endPointUrl}/${user._id}`, {role: newRole}, {headers});
+  }
+
+  deleteUser(id: string, token: string){
+     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete(`${this.endPointUrl}/${id}`, {headers});
   }
 }

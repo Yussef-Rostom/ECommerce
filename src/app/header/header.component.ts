@@ -10,8 +10,9 @@ import { RequestUserService } from '../services/request-user.service';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  userName = ''
+  userName: string = ''
   token: string ="";
+  isAdmin: boolean = false;
 
   constructor(private userService: RequestUserService, private localStorageService: LocalStorageService){ }
 
@@ -36,7 +37,10 @@ export class HeaderComponent {
     if(this.token){
       this.userService.getMyProfile(this.token).subscribe(res =>{
         const data:any = res.data;
-        if(data) this.userName = data.firstName + data.lastName;
+        if(data) {
+          this.userName = data.firstName + data.lastName;
+          this.isAdmin = data.role == 'ADMIN'
+        }
       });
     }
     else this.userName = '';

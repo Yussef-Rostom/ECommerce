@@ -5,6 +5,7 @@ import { RegisterComponent } from './register/register.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ProductComponent } from './product/product.component';
 import { AddProductComponent } from './add-product/add-product.component';
+import { UsersComponent } from './users/users.component';
 
 export const routes: Routes = [
   {
@@ -30,7 +31,12 @@ export const routes: Routes = [
   {
     path: 'product',
     component: AddProductComponent,
-    title: " Add Product Page"
+    title: "Add Product Page"
+  },
+  {
+    path: 'users',
+    component: UsersComponent,
+    title: "show users"
   },
   {
     path: '**',

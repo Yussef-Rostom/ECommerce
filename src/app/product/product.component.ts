@@ -101,7 +101,7 @@ export class ProductComponent{
 
   cancelDeletion(){
     clearTimeout(this.timer);
-    clearInterval(this.interval)
+    clearInterval(this.interval);
     this.message = "";
   }
 }

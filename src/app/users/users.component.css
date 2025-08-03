@@ -1,0 +1,11 @@
+/* Add to your component's CSS file */
+.form-switch .form-check-input {
+  width: 2.5em;
+  height: 1.5em;
+  cursor: pointer;
+}
+
+.form-switch .form-check-label {
+  margin-left: 0.5em;
+  cursor: pointer;
+}
