@@ -1,57 +1,57 @@
-<div class="container py-4">
+<div class="container py-5">
+
+  @if(message){
+    <div class="alert alert-danger alert-dismissible fade show fixed-top mt-5 mx-auto rounded-lg shadow-lg text-center" style="width: 25%; max-width: 1200px;" role="alert">
+      {{message}}
+      <button type="button" class="btn-close" (click)="cancelDeletion()" aria-label="Close"></button>
+    </div>
+  }
+
   <div class="row justify-content-center">
-    <div class="col-lg-7">
+    <div class="col-lg-8 col-xl-7">
 
-      <div class="card shadow position-relative">
+      <div class="card shadow-lg position-relative border-0 overflow-hidden">
 
-        <button class="btn btn-outline-secondary btn-sm position-absolute start-0 top-0 m-3 z-3"
-                routerLink="/">
+        <button class="btn btn-outline-secondary btn-sm position-absolute start-0 top-0 m-3 z-3 rounded-circle"
+                routerLink="/"
+                style="width: 40px; height: 40px;">
           <i class="bi bi-arrow-left"></i>
         </button>
 
         <div class="position-relative">
-          <img [src]="product.imageUrl" class="card-img-top img-fluid" style="max-height: 350px;">
-          <span class="position-absolute top-0 end-0 badge rounded-pill fs-6 m-3">
-            <!-- {{ product.stock > 0 ? "In Stock" : "Out of Stock" }} -->
-          </span>
+          <img [src]="product.imageUrl" class="card-img-top img-fluid object-fit-cover" style="height: 400px;">
         </div>
 
-        <div class="card-body p-4 pt-5">
+        <div class="card-body p-4 pt-4 pb-5">
 
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2 class="card-title h4">{{ product.name }}</h2>
-            <h3 class="text-primary h4">{{ product.price | currency }}</h3>
-          </div>
-          <div><strong>Category:</strong> {{ product.category || 'N/A' }}</div>
-
-
-          <!-- <div class="mb-3">
-            <span class="text-warning fs-4" [innerHTML]="product.rating | starRating"></span>
-            <span class="ms-2 text-muted">({{ product.rating }})</span>
-          </div> -->
-
-          <div class="mb-3">
-            <h4 class="h6">Description</h4>
-            <p class="card-text">{{ product.description }}</p>
+          <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-3">
+            <h2 class="card-title h3 mb-0 fw-bold">{{ product.name }}</h2>
+            <h3 class="text-primary h3 mb-0">{{ product.price | currency }}</h3>
           </div>
 
-          <!-- <div class="row mb-4 text-center">
-            <div class="col-md-6">
-              <p><strong>Brand:</strong> {{ product.brand || 'N/A' }}</p>
-              <p><strong>Category:</strong> {{ product.category || 'N/A' }}</p>
+          <div class="d-flex justify-content-between mb-4">
+            <div>
+              <span class="badge bg-info text-dark fs-6">{{ product.category || 'N/A' }}</span>
             </div>
-            <div class="col-md-6">
-              <p><strong>Stock:</strong> {{ product.stock }} units</p>
-              <p><strong>Discount:</strong> {{ product.discountPercentage || 0 }}%</p>
-            </div>
-          </div> -->
+          </div>
 
-          <div class="text-center mt-4">
+          <div class="mb-4">
+            <h4 class="h5 fw-bold mb-3 text-secondary">Description</h4>
+            <p class="card-text fs-5 text-muted">{{ product.description }}</p>
+          </div>
 
-            <button class="btn btn-primary px-4 py-2"
+          <div class="d-flex justify-content-center pt-3">
+
+            <button class="btn btn-primary px-4 py-2 rounded-pill mx-5"
                     (click)="callOwner(product)">
-              <i class="bi bi-telephone mx-2"></i><span mx-3>Call Owner</span>
+              <i class="bi bi-telephone mx-2"></i> Contact Owner
             </button>
+            @if(canDelete()){
+              <button class="btn btn-outline-danger px-4 py-2 rounded-pill mx-5"
+                      (click)="deleteProduct(product._id)">
+                <i class="bi bi-trash3 mx-2"></i> Delete Item
+              </button>
+            }
 
           </div>
 

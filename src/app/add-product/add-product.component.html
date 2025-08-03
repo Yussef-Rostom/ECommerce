@@ -1,19 +1,18 @@
 <div class="container">
 
+
   <div class="alert-container justify-content-center">
     @if(errorMessage){
-      <div class="alert alert-danger alert-dismissible fade show fixed-alert-center" role="alert">
+      <div class="alert alert-danger alert-dismissible fade show fixed-top mt-5 mx-auto rounded-lg shadow-lg text-center" style="width: 25%; max-width: 1200px;" role="alert">
         {{errorMessage}}
       </div>
     }
     @if(successMessage){
-      <div class="alert alert-success alert-dismissible fade show fixed-alert-center" role="alert">
+      <div class="alert alert-success alert-dismissible fade show fixed-top mt-5 mx-auto rounded-lg shadow-lg text-center" style="width: 25%; max-width: 1200px;" role="alert">
         {{successMessage}}
       </div>
     }
   </div>
-
-
 
   <div class="d-flex justify-content-center align-items-center min-vh-75 bg-light my-5">
 

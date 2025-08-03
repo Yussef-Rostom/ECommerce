@@ -39,5 +39,10 @@ export class RequestProductsService {
       })
     );
   }
+
+  deleteProduct(id: string, token: string): Observable<any>{
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete(`${this.endPointUrl}/${id}`, {headers});
+  }
 }
 

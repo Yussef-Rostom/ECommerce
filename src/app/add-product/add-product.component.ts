@@ -69,6 +69,7 @@ export class AddProductComponent {
   addProduct(): void {
 
     if (this.productForm.valid) {
+      this.productForm.disable;
       const formData = new FormData();
 
       formData.append('name', this.productForm.value.name);
