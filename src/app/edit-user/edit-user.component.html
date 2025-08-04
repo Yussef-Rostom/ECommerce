@@ -1,0 +1,121 @@
+<div class="container">
+
+  <div class="alert-container justify-content-center">
+    @if(errorMessage){
+      <div class="alert alert-danger alert-dismissible fade show fixed-top mt-5 mx-auto rounded-lg shadow-lg text-center" style="width: 25%; max-width: 1200px; min-width: 250px;" role="alert">
+        {{errorMessage}}
+      </div>
+    }
+    @if(successMessage){
+      <div class="alert alert-success alert-dismissible fade show fixed-top mt-5 mx-auto rounded-lg shadow-lg text-center" style="width: 25%; max-width: 1200px; min-width: 250px;" role="alert">
+        {{successMessage}}
+      </div>
+    }
+  </div>
+
+
+  <div class="d-flex justify-content-center align-items-center min-vh-75 bg-light my-5">
+
+
+    <div class="card border-0 shadow-lg p-4" style="width: 100%; max-width: 450px;">
+      <div class="card-body p-4">
+
+        <div class="text-center mb-4">
+          <i class="bi bi-person-gear text-primary fs-1 mb-3"></i>
+          <h2 class="card-title fw-bold mb-5">Update Your Account</h2>
+        </div>
+
+        <form [formGroup]="userForm" (ngSubmit)="updateUser()" class="needs-validation" novalidate>
+
+          <div class="mb-4">
+            <label for="name" class="form-label">Full Name</label>
+            <div class="input-group mb-1">
+              <span class="input-group-text"><i class="bi bi-person"></i></span>
+                <input
+                type="name"
+                class="form-control"
+                id="name"
+                formControlName="name"
+                placeholder="Enter your full name"
+              >
+            </div>
+            <div class="validation form-text text-danger mx-2">
+              @if (formControls['name'].invalid && (formControls['name'].touched)) {
+                @if(formControls['name'].errors && formControls['name'].errors['required']){
+                  <span>This field is required</span>
+                }
+              }
+            </div>
+          </div>
+
+
+          <div class ="mb-4">
+            <label for="phoneNumber" class="form-label">Phone Number</label>
+            <div class="input-group mb-1">
+              <span class="input-group-text bi bi-telephone"></span>
+                <input
+                type="phoneNumber"
+                class="form-control"
+                id="phoneNumber"
+                formControlName="phoneNumber"
+                placeholder="Enter your phone number"
+              >
+            </div>
+            <div class="validation form-text text-danger mx-2">
+              @if (formControls['phoneNumber'].invalid && (formControls['phoneNumber'].touched)) {
+                @if(formControls['phoneNumber'].errors){
+                  @if(formControls['phoneNumber'].errors['required']){
+                    <span>This field is required</span>
+                  }
+                  @else if(formControls['phoneNumber'].errors['pattern']){
+                    <span>No spaces allowed in phone number</span>
+                  }
+                }
+              }
+            </div>
+          </div>
+
+          <div class ="mb-4">
+            <label for="password" class="form-label">Password</label>
+            <div class="input-group mb-1">
+              <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                <input
+                type="password"
+                class="form-control"
+                id="password"
+                formControlName="password"
+                placeholder="Enter your password"
+              >
+            </div>
+            <div class="validation form-text text-danger mx-2">
+              @if (formControls['password'].invalid && (formControls['password'].touched)) {
+                @if(formControls['password'].errors){
+                  @if(formControls['password'].errors['pattern']){
+                    <span>
+                      Password must:
+                        <ul>
+                          <li>Be at least 8 characters long</li>
+                          <li>Contain at least one lowercase letter</li>
+                          <li>Contain at least one uppercase letter</li>
+                          <li>Contain at least one digit</li>
+                          <li>Contain at least one special character{{ "'@$%#'" }}</li>
+                        </ul>
+                    </span>
+                  }
+                }
+              }
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-primary w-100 py-2 mt-3 fw-bold shadow-sm"
+            [disabled]="userForm.invalid">
+            Update Now
+          </button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

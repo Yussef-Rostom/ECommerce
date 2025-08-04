@@ -64,4 +64,11 @@ export class RequestUserService {
      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.delete(`${this.endPointUrl}/${id}`, {headers});
   }
+
+  updateMyProfile(user: User, token: string){
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${token}`);
+    return this.http.put(`${this.endPointUrl}/me`, user, {headers});
+  }
 }

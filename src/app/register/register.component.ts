@@ -65,7 +65,7 @@ export class RegisterComponent {
     let names = data.name.split(' ')
     delete data.name;
     data.firstName = names[0];
-    data.lastName = names[names.length - 1];
+    data.lastName = names.length>1 ? names[names.length - 1] : " ";
     return {
       ...data,
       role: data.role ?? 'USER'

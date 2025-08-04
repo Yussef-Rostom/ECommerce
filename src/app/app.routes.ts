@@ -6,6 +6,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ProductComponent } from './product/product.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { UsersComponent } from './users/users.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 export const routes: Routes = [
   {
@@ -37,6 +38,11 @@ export const routes: Routes = [
     path: 'users',
     component: UsersComponent,
     title: "show users"
+  },
+    {
+    path: 'users/me',
+    component: EditUserComponent,
+    title: "edit my profile"
   },
   {
     path: '**',
